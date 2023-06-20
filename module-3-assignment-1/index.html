@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 3 Assignment 1</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <h4>Answer - 1 (a)</h4>
+    <pre>
+        function dayOfTheWeek(date = null){
+            if(date == null){
+                return 'Please provide valid date format like YYYY-MM-DD'
+            }
+        
+            let dateParse = new Date(date);
+            let day = dateParse.getDay();
+        
+            if( day == 0){
+                return "Sunday"
+            }else if(day == 1){
+                return "Monday";
+            }else if(day == 2){
+                return "Tuesday";
+            }else if(day == 3){
+                return "Wednesday";
+            }else if(day == 4){
+                return "Thursday";
+            }else if(day == 5){
+                return "Friday";
+            }else if(day == 6){
+                return "Saturday";
+            }else{
+                return "Wrong day number!";
+            }
+        }
+    </pre>
+
+    <h4>(b)</h4>
+    <p id="dayOftheWeek"></p>
+
+    <br>
+    <h4>Answer - 2 (a)</h4>
+    <pre>
+        
+        function sqrtRootOfsumOfAllNumberSquare(numbers = []){
+            let sum = 0;
+
+            for (let number of numbers) {
+            sum += number * number;
+            }
+            return Math.sqrt(sum);
+        }
+    </pre>
+
+    <h4>(b)</h4>
+    <p id="squarRoot"></p>
+
+    <br>
+
+    <h4>Answer - 3 (a)</h4>
+    <pre>
+        function isPrime(number) {
+            if (number <= 1) {
+              return false;
+            }
+        
+            for (let i = 2; i <= Math.sqrt(number); i++) {
+              if (number % i === 0) {
+                return false;
+              }
+            }
+            return true;
+        }
+    </pre>
+
+    <h4>(b)</h4>
+    <p id="isPrime"></p>
+
+    <h4>Answer - 4 (a)</h4>
+    <pre>
+    function openWindow(url, width, height) {
+        var left = (screen.width - width) / 2;
+        var top = (screen.height - height) / 2;
+        var windowFeatures = 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top;
+        var newWindow = window.open(url, '_blank', windowFeatures);
+        
+        return newWindow;
+      }
+    </pre>
+    
+    <h4>(b)</h4>
+    <pre>
+        openWindow('https://google.com', 500, 5000);
+    </pre>
+      
+
+    <h4>5 (a)</h4>
+    <pre>
+
+        function detectBrowser() {
+            var userAgent = navigator.userAgent;
+            var browserName;
+            var browserVersion;
+        
+            // Detect browser name and version
+            if (userAgent.indexOf("Firefox") > -1) {
+            browserName = "Mozilla Firefox";
+            browserVersion = userAgent.match(/Firefox\/(\d+\.\d+)/)[1];
+            } else if (userAgent.indexOf("Chrome") > -1) {
+            browserName = "Google Chrome";
+            browserVersion = userAgent.match(/Chrome\/(\d+\.\d+)/)[1];
+            } else if (userAgent.indexOf("Safari") > -1) {
+            browserName = "Apple Safari";
+            browserVersion = userAgent.match(/Version\/(\d+\.\d+)/)[1];
+            } else if (userAgent.indexOf("Opera") > -1) {
+            browserName = "Opera";
+            browserVersion = userAgent.match(/Opera\/(\d+\.\d+)/)[1];
+            } else if (userAgent.indexOf("Edge") > -1) {
+            browserName = "Microsoft Edge";
+            browserVersion = userAgent.match(/Edge\/(\d+\.\d+)/)[1];
+            } else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident/") > -1) {
+            browserName = "Internet Explorer";
+            browserVersion = userAgent.match(/(?:MSIE |rv:)(\d+\.\d+)/)[1];
+            } else {
+            browserName = "Unknown";
+            browserVersion = "Unknown";
+            }
+        
+            // Return the detected browser name and version
+            return {
+            name: browserName,
+            version: browserVersion
+            };
+        }
+    </pre>
+    <h4>(b)</h4>
+    <p id="detectBrowser"></p>
+
+
+
+    <h4>6 (a)</h4>
+    <pre>Location result see in console</pre>
+
+
+
+    <h4>7 (a)</h4>
+    <p>Click anywhre and see the client coordinate. <b>(Before test this please unccomment code in app.js line 140 to 145)</b></p>
+
+    <h4>(b)</h4>
+    <p id="">Press key from keyboard and see magic <b>(Before test this please unccomment code in app.js line 148 to 151)</b></p>
+    
+    
+    <h4>(c)</h4>
+    <p>Mouse over the image see magic</p>
+    <img id="myImage" src="img/1.png" height="100" width="100" alt="Original Image">
+
+    
+
+    <h4>8(a)</h4>
+    <p id="updateText">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur, commodi!</p>
+
+    <h4>(b)</h4>    
+    <button onclick="updateText()">Click Me See Magic</button>
+    
+
+    <br><br>
+    <h4>Answers - 9 </h4>
+        <form id="myForm">
+            <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <span id="nameError" class="error"></span>
+            </div>
+            <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <span id="emailError" class="error"></span>
+            </div>
+            <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <span id="passwordError" class="error"></span>
+            </div>
+            <div>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword">
+            <span id="confirmPasswordError" class="error"></span>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+
+
+
+    <br><br>
+    <h4>10 (a)</h4>
+    <button id="highlightButton">Highlight Paragraph</button>
+    <p id="myParagraph">This is a paragraph.</p>
+
+
+
+    <br><br>
+    <h4>11 (a)</h4>
+    <ul id="myList"></ul>
+
+
+
+    <br><br>
+    <h4>12 (a)</h4>
+    <img id="originalImg" src="img/1.png" height="100" width="100" alt="Initial Image">
+    <button onclick="ChangeImgSrc()">Change Image</button>
+
+
+    <br><br>
+    <h4>13 (a)</h4>
+    <p class="myClass">Paragraph 1</p>
+    <p id="myId">Paragraph 2</p>
+    <p class="myClass">Paragraph 3</p>
+    <p class="myClass">Paragraph 4</p>
+
+
+    <br><br>
+    <h4>14 (a)</h4>
+    <p>Click button then will be call get request by ajax</p>
+    <button onclick="sendGetRequest()">Get Request</button>
+
+
+
+    <br><br>
+    <h4>15 (a)</h4>
+    <p>Click for POST request by ajax</p>
+    <button onclick="sendPostRequest()">POST request</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

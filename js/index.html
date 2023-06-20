@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" >
+        <title>Live Test 2</title>
+    </head>
+    <body>
+
+       <div id="data"></div>
+
+       <script>
+            const myNumbers = [4, 1, -20, -7, 5, 9, -6];
+
+            const res = getPositiveNumber(myNumbers, (x) => x >= 0);
+
+            document.getElementById('data').innerHTML = res;
+
+            function getPositiveNumber(numbers, callback){
+                const filteredNum = [];
+
+                for(let x in numbers){
+                    const value = callback(x);
+                    if(value){
+                        filteredNum.push(x);
+                    }
+                }
+
+                return filteredNum;
+            }
+
+       </script>
+    </body>
+</html>
