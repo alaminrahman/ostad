@@ -13,122 +13,6 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
 
-        <script type="module">
-            import { products } from "./js/product.js"
-
-            let productHtml = "";
-
-            products.forEach(product => {
-                productHtml += `<div class="col-md-3 mb-5">
-                                <div class="card h-100">
-                                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                                    
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                           
-                                            <h5 class="fw-bolder">${ product.name }</h5>
-                                           
-                                            <span class="text-muted text-decoration-line-through">$20.00</span>
-                                            $${ product.price }
-                                        </div>
-                                    </div>
-                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="text-center">
-                                            <button class="btn btn-outline-dark mt-auto add-to-cart" data-id="${ product.id }" type="button">Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>`;
-                            
-                const area = document.getElementById("product-area").innerHTML = productHtml;
-            });
-        </script>
-
-        <script type="module">
-            import { products } from "./js/product.js"
-
-            const addToCartButtons = document.querySelectorAll('.add-to-cart');
-            addToCartButtons.forEach(button => {
-                button.addEventListener('click', addToCart);
-            });
-
-
-            //Cart
-            let cartItems = [];
-
-            
-            // Add selected product to the cart
-            function addToCart(event) {
-                const productId = event.target.dataset.id;
-
-                const product = products.find(product => product.id == productId);
-
-                cartItems.push({ product, quantity: 1 });
-
-                displayCartItems();
-            }
-
-            
-
-            function displayCartItems(){
-                let cartItemHtml = "";
-
-                cartItems.forEach(product => {
-
-                    cartItemHtml += `<div class="row m-2" >
-                                <div class="col-6">
-                                    <span>${ product.product.name }</span>
-                                </div>
-
-                                <div class="col-3">
-                                    <span>${ product.quantity }</span>
-                                </div>
-
-                                <div class="col-3">
-                                    <span>${ product.product.price * product.quantity }</span>
-                                    <span class="text-danger btn remove-from-cart" data-id="${ product.product.id }">X</span>
-                                </div>
-                            </div>`;
-
-                })
-                document.getElementById("cart-area").innerHTML = cartItemHtml;
-
-                calculateTotalPrice();
-            }
-
-            function calculateTotalPrice() {
-                let totalPrice = 0;
-            
-                cartItems.forEach((product) => {
-                    totalPrice += product.product.price * product.quantity;
-                });
-                document.getElementById("subTotal").innerText = totalPrice;
-            }
-
-            const removeFromCartButtons = document.querySelectorAll('.remove-from-cart');
-                removeFromCartButtons.forEach(button => {
-                button.addEventListener('click', removeFromCart);
-                });
-
-                function removeFromCart(event) {
-                // Find the index of the item with the specified ID in the cartItems array
-                const productId = event.target.dataset.id;
-                console.log(productId)
-alert('test')
-                const index = cartItems.findIndex(item => item.id == productId);
-
-                    if (index !== -1) {
-                        // Remove the item from the cartItems array
-                        cartItems.splice(index, 1);
-                        // Update the HTML display of the cart
-                        displayCartItems();
-                        calculateTotalPrice();
-                    }
-                }
-
-            
-
-        </script>
 
     </head>
     <body>
@@ -177,13 +61,13 @@ alert('test')
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row">
 
-                    <div class="col-md-9">
+                    <div class="col-md-8">
                         <div class="row" id="product-area"></div>
                         <!--End Row-->
                     </div>
                     <!-- End Col -->
 
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card">
 
                             <div class="row m-2">
@@ -212,7 +96,7 @@ alert('test')
                                 </div>
 
                                 <div class="col-5" style="text-align: end;">
-                                    <span class="" id="subTotal">0.00</span>
+                                    <span class="subTotal" id="subTotal">0.00</span>
                                 </div>
                             </div>
 
@@ -233,9 +117,152 @@ alert('test')
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
 
-        <!-- Products -->
+
+        <script type="module">
+            import { products } from "./js/product.js"
+
+            let productHtml = "";
+
+            products.forEach(product => {
+                productHtml += `<div class="col-md-4 mb-5">
+                                <div class="card h-100">
+                                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                                    
+                                    <div class="card-body p-4">
+                                        <div class="text-center">
+                                           
+                                            <h5 class="fw-bolder">${ product.name }</h5>
+                                           
+                                            <span class="text-muted text-decoration-line-through">$20.00</span>
+                                            $${ product.price }
+                                        </div>
+                                    </div>
+                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                        <div class="text-center">
+                                            <button class="btn btn-outline-dark mt-auto add-to-cart" data-id="${ product.id }" type="button">Add to cart</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
+                            
+                const area = document.getElementById("product-area").innerHTML = productHtml;
+            });
+        </script>
+
+        <script type="module">
+            import { products } from "./js/product.js"
+
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', addToCart);
+            });
+
+
+            //Cart
+            let cartItems = [];
+
+            // Add selected product to the cart
+            function addToCart(event) {
+                const productId = event.target.dataset.id;
+
+                const product = products.find(product => product.id == productId);
+
+                const existingCartItem = cartItems.find(item => item.product.id == productId);
+
+                if (existingCartItem) {
+                    existingCartItem.quantity++;
+                } else {
+                    cartItems.push({ product, quantity: 1 });
+                }
+
+                displayCartItems();
+            }
+
+            function displayCartItems(){
+                let cartItemHtml = "";
+
+                cartItems.forEach(product => {
+
+                    cartItemHtml += `<div class="row m-2" >
+                                <div class="col-6">
+                                    <span>${ product.product.name }</span>
+                                </div>
+
+                                <div class="col-3 d-flex">
+                                    <button class="btn btn-light increase-quantity" data-id="${ product.product.id }">+</button>
+                                    <span class="mt-2">${ product.quantity }</span>
+                                    <span class="btn btn-light decrease-quantity" data-id="${ product.product.id }">-</span>
+                                </div>
+
+                                <div class="col-3">
+                                    <span>${ product.product.price * product.quantity }</span>
+                                    <button type="button" class="text-danger btn remove-from-cart" data-id="${ product.product.id }">X</button>
+                                </div>
+                            </div>`;
+
+                })
+                document.getElementById("cart-area").innerHTML = cartItemHtml;
+
+                calculateTotalPrice();
+            }
+
+            function calculateTotalPrice() {
+                let totalPrice = 0;
+            
+                cartItems.forEach((product) => {
+                    totalPrice += product.product.price * product.quantity;
+                });
+                document.getElementById("subTotal").innerText = totalPrice;
+            }
+
+            //Remove from cart
+            const removeFromCartButtons = document.querySelectorAll('.remove-from-cart');
+
+            removeFromCartButtons.forEach(button => {
+                button.addEventListener('click', removeFromCart);
+            });
+
+            function removeFromCart(event) {
+                // Find the index of the item with the specified ID in the cartItems array
+                const productId = event.target.dataset.id;
+                const index = cartItems.findIndex(item => item.id == productId);
+
+                if (index !== -1) {
+                    // Remove the item from the cartItems array
+                    cartItems.splice(index, 1);
+                    // Update the HTML display of the cart
+                    displayCartItems();
+                    calculateTotalPrice();
+                }
+            }
+
+            //Increase qty
+            const increaseQtyBtn = document.querySelectorAll(".increase-quantity");
+
+            increaseQtyBtn.forEach(button => {
+                button.addEventListener('click', increaseQty);
+            });
+
+            function increaseQty(event) {
+                const productId = event.target.dataset.id;
+                const product = cartItems.find(item => item.id == productId);
+                product.quantity++;
+            }
+
+            //Decrease qty
+            const decreaseQtyBtn = document.querySelectorAll(".decrease-quantity");
+
+            decreaseQtyBtn.forEach(button => {
+                button.addEventListener('click', decreaseQty);
+            });
+
+            function decreaseQty(event) {
+                const productId = event.target.dataset.id;
+                const product = cartItems.find(item => item.id == productId);
+                product.quantity--;
+            }
+        </script>
+       
     </body>
 </html>
