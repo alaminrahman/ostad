@@ -31,7 +31,7 @@ function Content (){
                                 placeholder="Write something"
                             ></textarea>
 
-                            <Button type='submit' buttonName='Click and Display Content' classes='btn btn-light my-3 btn-block w-100' />
+                            <Button type='submit' buttonName='Click before input some value and you will se the content below the button' classes='btn btn-light my-3 btn-block w-100' />
 
                             <ShowText text={ textValue.length > 0 ? `Your content is : ${textValue}` : '' } classes=""/>
                         </form>
