@@ -27,6 +27,7 @@ export default function Menu(){
                     {
                         categories.map(( category, index ) => {
                             <NavLink to="/" key = { index }>{ category.name }</NavLink>
+                            <NavLink to="/" key = { index }>{ category.name }</NavLink>
                         })
                     }
 
