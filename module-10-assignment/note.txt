@@ -1,0 +1,14 @@
+Folder Structure Explain -
+
+1. App :  App folder is main folder of the application. Application start from app folder. In the app folder, situated all pages. By default, 
+
+- favicon.ico (is automatically detect for shortcut icon in browser tab.
+)
+
+- global.css (This css file use entire the application)
+
+- layout.js (This file is master or root layout for other page. This file must contain <html> and <body> tag. In the application if we execute some content only one time and every page will be get also then we will write this content in the layout.js file. Layout can accept props as children element. In the folder stucture layout detect automatically. We can create custom layout for specific page or route group also and it will work with master/root layout)
+
+- page.js (In Nextjs application page.js is a special file because page.js file detect nextjs application automatically for new page and route also )
+
+- page.module.css (This css file use specific component or page in the application. Its naming convention is different just for understanding)
