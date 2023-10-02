@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import Menu from './../components/Menu'
 
 export default function NotFound () {
 

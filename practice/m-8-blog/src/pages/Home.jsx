@@ -1,13 +1,15 @@
 
-import Post from '../components/Post';
-import Menu from './../components/Menu'
+import Post from './../components/Post';
+import Layout from '../layout/layout';
 
 export default function Home () {
 
     return (
         <>
-        <Menu />
-        <Post />
+        <Layout>
+            <Post />
+        </Layout>
+        
         </>
     );
 }

@@ -8,12 +8,9 @@ export function middleware(req, res){
         console.log(token)
     
         if(token == '123-XYZ'){
-            reqHeaders.set('user', 'alamin')
-            reqHeaders.set('email', 'alamin@gmail.com')
-
-            return NextResponse.next({
-                request: { headers: reqHeaders }
-            });
+            const response = NextResponse.next();
+            response.headers.set('Set-Cookie', 'session=xxxvalue; path=/; httponly=true; secure=true; expires=Thu, 18 Dec 2023 12:00:00 Astana');
+            return response;
         }else{
             return NextResponse.json({}, { status: 401 });
         }
