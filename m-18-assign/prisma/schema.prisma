@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model user{
+  id Int @id @default(autoincrement()) @db.UnsignedInt
+  firstName String @db.VarChar(50)
+  middleName String? @db.VarChar(50)
+  lastName String @db.VarChar(50)
+  mobile String? @db.VarChar(15)
+  email String @db.VarChar(50)
+  passwordHash String @db.VarChar(32)
+  registeredAt DateTime @default(now())
+  lastLogin DateTime?
+  intro String? @db.TinyText 
+  profile String? @db.Text
+  post post[]
+}
+
+model tag{
+  id Int @id @default(autoincrement()) @db.UnsignedInt
+  title String @db.VarChar(75)
+  metaTitle String @db.VarChar(100)
+  slug String @db.VarChar(100)
+  content String @db.Text
+}
+
+model category{
+  id Int @id @default(autoincrement()) @db.UnsignedInt
+  parentId Int
+  title String @db.VarChar(75)
+  metaTitle String @db.VarChar(100)
+  slug String @db.VarChar(100)
+  content String @db.Text
+}
+
+model post{
+  id Int @id @default(autoincrement()) @db.UnsignedInt
+  user user @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  user_id Int
+  parentId Int
+  title String
+  metaTitle String
+  slug String
+  summary String @db.TinyText
+  published String @db.TinyText
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+  publishedAt DateTime?
+  content String @db.Text
+}
