@@ -27,4 +27,79 @@ model user{
     lastName String @db.VarChar(100)
     mobile String @db.VarChar(100)
     email String @db.VarChar(100)
+    password String @db.VarChar(100)
+    admin Boolean @default(false) @db.TinyInt
+    registeredAt DateTime @default(now())  @db.Timestamp(0)
+    lastLogin DateTime?  @db.Timestamp()
+    createdAt DateTime @default(now()) @db.Timestamp(0)
+    updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+    products product[]
+    cart cart[]
+    orders order[]
+}
+
+model product{
+  id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  name String @db.VarChar(100)
+  metaTitle String @db.VarChar(100)
+  slug String @db.VarChar(100)
+  summary String @db.VarChar(100)
+  price Int @db.Int
+  discount Int @db.Int
+  user user @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId BigInt @db.UnsignedBigInt
+  publishedAt DateTime @db.Timestamp()
+  startAt DateTime @db.Timestamp()
+  endAt DateTime @db.Timestamp()
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+  product_meta product_meta?
+  product_reviews product_review[]
+}
+
+model product_meta{
+  id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  key String @db.VarChar(100)
+  content String @db.VarChar(100)
+  productId BigInt @db.UnsignedBigInt @unique
+  product product @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+}
+
+model product_review{
+  id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  title String @db.VarChar(100)
+  rating String @db.VarChar(100)
+  content String @db.VarChar(100)
+  productId BigInt @db.UnsignedBigInt
+  product product @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+}
+
+model cart{
+  id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  sessionId String @db.VarChar(100)
+  token String @db.VarChar(100)
+  status String @db.VarChar(100)
+  userId BigInt @db.UnsignedBigInt
+  user user @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+}
+
+model order{
+  id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  token String? @db.VarChar(100)
+  subtotal Decimal @default(0) @db.Decimal(10, 2)
+  itemDiscount Decimal @default(0) @db.Decimal(10, 2)
+  tax Decimal @default(0) @db.Decimal(10, 2)
+  total Decimal @default(0) @db.Decimal(10, 2)
+  discount Decimal @default(0) @db.Decimal(10, 2)
+  grandTotal Decimal @default(0) @db.Decimal(10, 2)
+  userId BigInt @db.UnsignedBigInt
+  user user @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
 }
